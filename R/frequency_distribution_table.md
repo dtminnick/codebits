@@ -305,19 +305,23 @@ A frequency distribution table is a way of organizing and summarizing a
 set of data to provide a clear and concise representation of its
 distribution.
 
-Some related benefits of using a frequency distribution table: \*
-Simplifies a large dataset by organizing it into categories or classes
-and displaying the frequency (number of occurrences) of each category,
-\* Provides a quick overview of the data distribution, allowing you to
-identify patterns, tendencies, and central tendencies (such as mode,
-median, and mean). \* Facilitates easy comparison between different
-categories or classes, helping to identify which values occur more
-frequently or less frequently. \* Outliers, or extreme values, can be
-easily spotted in a frequency distribution table. This helps in
-understanding the presence of unusual data points that might skew the
-analysis. \* Serves as a basis for creating visual representations such
-as histograms, bar charts, or pie charts, making it easier to
-communicate the distribution of data to others.
+Some related benefits of using a frequency distribution table:
+
+-   Simplifies a large dataset by organizing it into categories or
+    classes and displaying the frequency (number of occurrences) of each
+    category,
+-   Provides a quick overview of the data distribution, allowing you to
+    identify patterns, tendencies, and central tendencies (such as mode,
+    median, and mean).
+-   Facilitates easy comparison between different categories or classes,
+    helping to identify which values occur more frequently or less
+    frequently.
+-   Outliers, or extreme values, can be easily spotted in a frequency
+    distribution table. This helps in understanding the presence of
+    unusual data points that might skew the analysis.
+-   Serves as a basis for creating visual representations such as
+    histograms, bar charts, or pie charts, making it easier to
+    communicate the distribution of data to others.
 
 Here’s an example based on the letter count table we generated.
 

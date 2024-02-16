@@ -1,0 +1,203 @@
+---
+title: "Frequency Distribution Table"
+author: "Donnie Minnick"
+date: "`r Sys.Date()`"
+output:
+  md_document:
+    variant: markdown_github
+---
+
+## Problem
+
+You need to generate a frequency distribution table from a series of values to show the proportion of each value in the data.
+
+## Solution
+
+The code below converts the values into a frequency distribution.
+
+#### Load Libraries
+
+This solution uses the `dplyr`, `knitr` and `stringr` libraries.  The code chunk below checks for installation and, if needed, will install the libraries and load them.  The `ggplot` library is used to generate the plot at the end of this example.
+
+```{r load_libraries, message = FALSE}
+packages <- c("dplyr", "ggplot2", "knitr", "stringr")
+
+installed_packages <- packages %in% rownames(installed.packages())
+
+if(any(installed_packages == FALSE)) {
+  
+  install.packages(packages[!installed_packages])
+  
+}
+
+invisible(lapply(packages, library, character.only = TRUE))
+```
+
+#### Create Words Data Frame
+
+To demonstrate how to create a frequency distribution, I'll start with a string of words from a text.  I'll convert the string to a list, remove punctuation, convert the words to lowercase, coerce the list to data frame and rename the single column in the data frame.
+
+If you're curious, this text is taken from the first paragraph of James Joyce's short story "The Dead."
+
+```{r generate_words_data_frame, messages = FALSE}
+words <- paste("Lily, the caretaker's daughter, was literally run off her feet. ",
+               "Hardly had she brought one gentleman into the little pantry behind ",
+               "the office on the ground floor and helped him off with his overcoat ",
+               "than the wheezy hall-door bell clanged again and she had to scamper ",
+               "along the bare hallway to let in another guest. It was well for her ",
+               "she had not to attend to the ladies also. But Miss Kate and Miss ",
+               "Julia had thought of that and had converted the bathroom upstairs ",
+               "into a ladies' dressing-room. Miss Kate and Miss Julia were there, ",
+               "gossiping and laughing and fussing, walking after each other to the ",
+               "head of the stairs, peering down over the banisters and calling down ",
+               "to Lily to ask her who had come.", sep = "")
+
+words <- unlist(strsplit(words, " "))
+
+words <- gsub("[][,.]", "", words)
+
+words <- str_to_lower(words)
+
+words <- as.data.frame(words, stringsAsFactors = FALSE)
+
+colnames(words) <- c("word")
+```
+
+The resulting data frame contains a single 'word' column with `r nrow(words)` rows, one record for each word in the original string.  We know there are duplicates in the data frame, e.g. the word 'the', and a frequency distribution table will enable us to quantify the occurrence of those duplicates.
+
+#### Additional Data Frame Columns
+
+I'll add some additional columns to facilitate variations of groups, e.g. first and last letter columns as well as 'starts with' and 'ends with' columns that identify the starting or ending letter as a vowel or consonant.  I also added a letter count for each word.
+
+```{r expand_words_data_frame}
+words <- words %>%
+      mutate(first_letter = str_sub(word, 1, 1),
+             last_letter = str_sub(word, str_length(word), str_length(word)),
+             letter_count = str_length(word),
+             starts_with = ifelse(first_letter %in% c("a", "e", "i", "o", "u"),
+                                        "vowel",
+                                        "consonant"),
+             ends_with = ifelse(last_letter %in% c("a", "e", "i", "o", "u"),
+                                "vowel",
+                                "consonant"))
+```
+
+Here's a view of the first ten rows of the expanded data frame.
+
+```{r view_data_frame}
+head(words, 10)
+```
+
+#### Letter Count Frequency Distribution
+
+Let's first generate a frequency distribution based on the letter count variable.
+
+```{r generate_letter_count_distribution, messages = FALSE}
+count_distribution <- words %>%
+    group_by(letter_count) %>%
+    summarise(count = n()) %>%
+    arrange(dplyr::desc(count)) %>%
+    mutate(cumulative_count = cumsum(count),
+           frequency = round(count / sum(count), 2),
+           cumulative_frequency = round(cumulative_count / sum(count), 2)) %>%
+    select(letter_count,
+           count,
+           frequency,
+           cumulative_count,
+           cumulative_frequency)
+```
+
+Here's the resulting table.
+
+```{r generate_letter_count_table, messages = FALSE}
+kable(count_distribution,
+      col.names = c("Letter Count",
+                    "Count",
+                    "Frequency",
+                    "Cumulative Count",
+                    "Cumulative Frequency"),
+      caption = "Letter Count Frequency Distribution",
+      format.args = list(big.mark = ","),
+      align = c("l", "r", "r", "r", "r"))
+```
+
+How do we interpret this table?  
+
+Starting with the first row, there are 45 words in the text with a letter count (or character length) of three, which is 35% of the total words.  There are 25 words in the next with a letter count of four, and they make up an additional 20% of the total words.  Combined, the three- and four-letter words make up a majority of the words, more specifically, 55%.  
+
+Moving to the end of the table, there is one word with a length of 13.  This word is 1% of the total words.
+
+But what is the distribution of the words themselves?
+
+#### Word Frequency Distribution
+
+Let's first generate a frequency distribution based on the word variable.
+
+```{r generate_word_distribution, messages = FALSE}
+word_distribution <- words %>%
+    group_by(word) %>%
+    summarise(count = n()) %>%
+    arrange(dplyr::desc(count)) %>%
+    mutate(cumulative_count = cumsum(count),
+           frequency = round(count / sum(count), 2),
+           cumulative_frequency = round(cumulative_count / sum(count), 2)) %>%
+    select(word,
+           count,
+           frequency,
+           cumulative_count,
+           cumulative_frequency)
+```
+
+This data frame has `r nrow(word_distribution)` and is considerably longer than the prior table.
+
+Here's the resulting table.
+
+```{r generate_word_table, messages = FALSE}
+kable(word_distribution,
+      col.names = c("Word",
+                    "Count",
+                    "Frequency",
+                    "Cumulative Count",
+                    "Cumulative Frequency"),
+      caption = "Word Frequency Distribution",
+      format.args = list(big.mark = ","),
+      align = c("l", "r", "r", "r", "r"))
+```
+
+We can see from this table that the most common word in the text is the word 'the,' which occurs 11 times at a relative frequency of 9%.  There are a large number of words that occur only once in the text, and each of these have a relative frequency of 1% each.
+
+## Discussion
+
+A frequency distribution table is a way of organizing and summarizing a set of data to provide a clear and concise representation of its distribution. 
+
+Some related benefits of using a frequency distribution table:
+* Simplifies a large dataset by organizing it into categories or classes and displaying the frequency (number of occurrences) of each category,
+* Provides a quick overview of the data distribution, allowing you to identify patterns, tendencies, and central tendencies (such as mode, median, and mean).
+* Facilitates easy comparison between different categories or classes, helping to identify which values occur more frequently or less frequently.
+* Outliers, or extreme values, can be easily spotted in a frequency distribution table. This helps in understanding the presence of unusual data points that might skew the analysis.
+* Serves as a basis for creating visual representations such as histograms, bar charts, or pie charts, making it easier to communicate the distribution of data to others.
+
+Here's an example based on the word table we generated.
+
+```{r generate_pareto_chart, messages = FALSE}
+scale_right <- tail(count_distribution$cumulative_frequency, n = 1) / head(count_distribution$count, n = 1)
+
+ggplot(count_distribution, ggplot2::aes(x = stats::reorder(letter_count, -frequency))) +
+    geom_bar(aes(y = count),
+             fill = "blue",
+             stat = "identity") +
+    geom_point(aes(y = cumulative_frequency / scale_right),
+               color = "green",
+               pch = 16,
+               size = 1) +
+    geom_path(aes(y = cumulative_frequency / scale_right, group = 1),
+              colour = "darkgrey",
+              lty = 3,
+              linewidth = 0.9) +
+    scale_y_continuous(sec.axis = sec_axis(~.*scale_right, name = "Cumulative (%)")) +
+    theme(axis.text.x = element_text(angle = 0, vjust = 0.6)) +
+    labs(title = "Pareto Chart",
+         subtitle = "Distribution of Words by Letter Count in Joyce's Story 'The Dead'",
+         x = "Letter Count",
+         y = "Frequency")
+```

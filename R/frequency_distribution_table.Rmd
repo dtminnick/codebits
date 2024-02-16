@@ -123,7 +123,7 @@ kable(count_distribution,
 
 How do we interpret this table?  
 
-Starting with the first row, there are 45 words in the text with a letter count (or character length) of three, which is 35% of the total words.  There are 25 words in the next with a letter count of four, and they make up an additional 20% of the total words.  Combined, the three- and four-letter words make up a majority of the words, more specifically, 55%.  
+Starting with the first row, there are 45 words in the text with a letter count (or character length) of three, which is 35% of the total words.  There are 25 words in the text with a letter count of four, and they make up an additional 20% of the total words.  Combined, the three- and four-letter words make up a majority of the words, more specifically, 55%.  
 
 Moving to the end of the table, there is one word with a length of 13.  This word is 1% of the total words.
 
@@ -148,9 +148,7 @@ word_distribution <- words %>%
            cumulative_frequency)
 ```
 
-This data frame has `r nrow(word_distribution)` and is considerably longer than the prior table.
-
-Here's the resulting table.
+This data frame has `r nrow(word_distribution)` rows and is considerably longer than the prior table.
 
 ```{r generate_word_table, messages = FALSE}
 kable(word_distribution,
@@ -177,7 +175,7 @@ Some related benefits of using a frequency distribution table:
 * Outliers, or extreme values, can be easily spotted in a frequency distribution table. This helps in understanding the presence of unusual data points that might skew the analysis.
 * Serves as a basis for creating visual representations such as histograms, bar charts, or pie charts, making it easier to communicate the distribution of data to others.
 
-Here's an example based on the word table we generated.
+Here's an example based on the letter count table we generated.
 
 ```{r generate_pareto_chart, messages = FALSE}
 scale_right <- tail(count_distribution$cumulative_frequency, n = 1) / head(count_distribution$count, n = 1)

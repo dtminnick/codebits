@@ -160,7 +160,7 @@ How do we interpret this table?
 
 Starting with the first row, there are 45 words in the text with a
 letter count (or character length) of three, which is 35% of the total
-words. There are 25 words in the next with a letter count of four, and
+words. There are 25 words in the text with a letter count of four, and
 they make up an additional 20% of the total words. Combined, the three-
 and four-letter words make up a majority of the words, more
 specifically, 55%.
@@ -190,9 +190,8 @@ word_distribution <- words %>%
            cumulative_frequency)
 ```
 
-This data frame has 84 and is considerably longer than the prior table.
-
-Here’s the resulting table.
+This data frame has 84 rows and is considerably longer than the prior
+table.
 
 ``` r
 kable(word_distribution,
@@ -320,7 +319,7 @@ analysis. \* Serves as a basis for creating visual representations such
 as histograms, bar charts, or pie charts, making it easier to
 communicate the distribution of data to others.
 
-Here’s an example based on the word table we generated.
+Here’s an example based on the letter count table we generated.
 
 ``` r
 scale_right <- tail(count_distribution$cumulative_frequency, n = 1) / head(count_distribution$count, n = 1)

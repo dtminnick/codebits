@@ -1,0 +1,36 @@
+---
+title: "Title"
+author: "Donnie Minnick"
+date: "`r Sys.Date()`"
+output:
+  md_document:
+    variant: markdown_github
+---
+
+## Problem
+
+You need to...
+
+## Solution
+
+#### Load Libraries
+
+This solution uses the `dplyr`, `knitr` and `stringr` libraries.  The code chunk below checks for installation and, if needed, will install the libraries and load them.  The `ggplot` library is used to generate the plot at the end of this example.
+
+```{r load_libraries, message = FALSE}
+packages <- c("dplyr", "ggplot2", "knitr", "stringr")
+
+installed_packages <- packages %in% rownames(installed.packages())
+
+if(any(installed_packages == FALSE)) {
+  
+  install.packages(packages[!installed_packages])
+  
+}
+
+invisible(lapply(packages, library, character.only = TRUE))
+```
+
+## Discussion
+
+

@@ -1,26 +1,25 @@
 ## Problem
 
-You need to count active events in a manner that require a solution for
-counting by hour interval, accounting for events that overlap intervals.
+You need to count active events by hour interval, accounting for events
+that overlap multiple intervals.
 
 ## Solution
 
-This solution is implemented as a function that count active events for
+This solution is implemented as a function that counts active events for
 each hour, considering the start and end hours of those events. The
-function accounts for events that overlap multiple hour intervals to
-avoid counting them more than once.
+function accounts for events that overlap multiple hour intervals.
 
 This solution assumes events start and end within a single 24-hour day.
 
 #### Load Libraries
 
-This solution uses the `dplyr`, `knitr` and `stringr` libraries. The
-code chunk below checks for installation and, if needed, will install
-the libraries and load them. The `ggplot` library is used to generate
-the plot at the end of this example.
+This solution uses the `dplyr` and `knitr` libraries. The code chunk
+below checks for installation and, if needed, will install the libraries
+and load them. The `ggplot` library is used to generate the plot at the
+end of this example.
 
 ``` r
-packages <- c("dplyr", "ggplot2", "knitr", "stringr")
+packages <- c("dplyr", "ggplot2", "knitr")
 
 installed_packages <- packages %in% rownames(installed.packages())
 
@@ -52,7 +51,7 @@ events <- events %>%
 ```
 
 With the exception of the first event, all the events in this data frame
-will overlap at least one interval, and there will be hours in the day
+will overlap at least two intervals, and there will be hours in the day
 in which there are no active events. The data frame looks like this.
 
 ``` r
@@ -79,7 +78,9 @@ Events Data Frame
 
 #### Count Function
 
-Explain…
+The function below returns the sum of events in which the start hour is
+less than or equal to the current hour and the end hour is greater than
+or equal to the current hour.
 
 ``` r
 count_active_events <- function(current_hour, start_hour, end_hour) {
@@ -91,7 +92,20 @@ count_active_events <- function(current_hour, start_hour, end_hour) {
 
 #### Generate Hourly Counts
 
-Use function to create counts table…
+Use function to create counts table, create an hours vector than
+contains integer values for each hour of the day, o through 23.
+
+then create an hourly counts vector with one variable based on the hours
+vector. We will use this data frame to capture the counts by interval.
+
+Use the `count_active_events` function to add a second variable to the
+data frame, passing the hour of day, start and end hour of each row in
+the events data frame.
+
+Note that the `rowwise` function allows you to compute on the events
+data frame one row at a time. We use
+`this function`rowwise`because the`count_active_events\` function is not
+vectorized.
 
 ``` r
 hours <- 0:23
@@ -103,7 +117,7 @@ hourly_counts <- hourly_counts %>%
   mutate(active_event_count = count_active_events(hour_of_day, events$start_hour, events$end_hour))
 ```
 
-Resulting table…
+The following table shows the count of active events by hour.
 
 ``` r
 kable(hourly_counts,
@@ -151,7 +165,7 @@ the course of a day.
 ggplot(hourly_counts, aes(x = hour_of_day, y = active_event_count)) +
   geom_bar(stat = "identity", fill = "blue") +
   labs(title = "Active Events by Hour Interval",
-       subtitle = "Activity peaks during the hours of 7:00-9:00 am.",
+       subtitle = "Activity peaks in the early morning hours of 5:00-9:00 am.",
        x = "Hour of Day",
        y = "Active Event Count")
 ```

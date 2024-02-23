@@ -65,6 +65,8 @@ head(responses, 10)
 
 #### Generate Chart
 
+Generate a diverging stacked bar chart with the data frame.  This chart type is effective for quickly understanding the distribution of responses on the five-point scale.  Note that the neutral category is centered in the chart and both negative and positive responses extend from the center.
+
 ```{r generate_chart, messages = FALSE}
 gglikert(responses) +
     labs(title = "Likert Diverging Stacked Bar Chart",
@@ -72,6 +74,7 @@ gglikert(responses) +
          x = "Percent",
          y = "Question")
 ```
+
 #### Customize Chart
 
 Likert charts generated with `gglikert` can be customized via a range of arguments as well as functions from the `ggplot2` package that allow for customization of colors, for example.
@@ -92,3 +95,5 @@ gglikert(responses,
 ## Discussion
 
 Diverging stacked bar charts are an effective means to visualize survey data when collected via a Likert scale.
+
+I've also used this chart type when showing relative maturity levels on a five-point scale for capability assessments.

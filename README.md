@@ -12,6 +12,6 @@ This repository contains useful codebits, organized by language, to solve data a
 
 [Generate a frequency distribution table](https://github.com/dtminnick/codebits/blob/main/R/frequency_distribution_table.md) using the `dplyr` library.
 
-[List and import files](/portfolio/code/R/sample_page) from the Amazon AWS using the `aws.s2` library.
+[List and import files](https://github.com/dtminnick/codebits/blob/main/R/list_and_extract_aws_files.md) from the Amazon cloud storage using the `aws.s2` library.
 
 [Reconcile record counts](https://github.com/dtminnick/codebits/blob/main/R/file_reconciliation.md) when combining multiple files.

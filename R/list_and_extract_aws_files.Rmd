@@ -1,0 +1,123 @@
+---
+title: "List and Extract AWS Files"
+author: "Donnie Minnick"
+date: "`r Sys.Date()`"
+output:
+  md_document:
+    variant: markdown_github
+---
+
+## Problem
+
+You need to list and extract files from Amazon AWS cloud storage.
+
+## Solution
+
+This solution uses the `aws.s2`, `dplyr`, `knitr` and `stringr` libraries.  The code chunk below checks for installation and, if needed, will install the libraries and load them.
+
+#### Load Libraries
+
+```{r load_libraries, message = FALSE}
+packages <- c("aws.s3", "dplyr", "knitr", "stringr")
+
+installed_packages <- packages %in% rownames(installed.packages())
+
+if(any(installed_packages == FALSE)) {
+  
+  install.packages(packages[!installed_packages])
+  
+}
+
+invisible(lapply(packages, library, character.only = TRUE))
+```
+
+#### List Files
+
+This example will use data collected and stored by Divvy, a Chicago-based bike sharing service and can be found [here](https://divvy-tripdata.s3.amazonaws.com/index.html).  
+
+The following code chunk uses the `aws.s3` library to create and display a data frame listing the files in the divvy-tripdata AWS bucket.
+
+```{r view_zip_files}
+files <- as.data.frame(get_bucket("divvy-tripdata")) %>%
+  rename(bucket = Bucket,
+         key = Key,
+         date_last_modified = LastModified,
+         size_in_bytes = Size) %>%
+  mutate(size_in_bytes = as.numeric(size_in_bytes),
+         size_in_megabytes = round(size_in_bytes / 1e+06, 1),
+         date_last_modified = as.Date(date_last_modified)) %>%
+  select(bucket,
+         key,
+         size_in_megabytes,
+         date_last_modified) %>%
+  arrange(key)
+```
+
+Here's the list in a table.
+
+```{r}
+kable(files,
+      col.names = c("Bucket",
+                    "File Name",
+                    "File Size (Mb)",
+                    "Date Last Modified"),
+      caption = "Cyclistic Data Files",
+      format.args = list(big.mark = ","),
+      align = c("l", "l", "r", "r"))
+```
+
+The bucket contains `r format(nrow(files), big.mark = ",", scientific = FALSE)` zip files with last modified dates ranging from `r min(files$date_last_modified)` to `r max(files$date_last_modified)`.
+
+There are some inconsistencies in files names and time periods covered, e.g. some monthly and others quarterly.  Data is available beginning in January 2013 and is refreshed monthly.
+
+#### Download Files
+
+For this example, I will download the January 2024 file.
+
+The code chunk below saves the zip and source files in a project subfolder.
+
+I am using a sub-string to filter out all files except those with 202401 in the file name.
+
+```{r download_target_files}
+target_files <- files %>%
+  filter(str_sub(key, 1, 6) == "202401")
+
+for(i in 1:nrow(target_files)) {
+
+  save_object(object = target_files[i,]$key,
+              bucket = target_files[i,]$bucket,
+              file = paste("../inst/extdata/zip/", target_files[i,]$key, sep = ""),
+              overwrite = TRUE)
+  
+}
+```
+
+#### Extract Files
+
+The following code chunk extracts the source files from the zip files and saves them.
+
+```{r extract_source_files}
+source_files <- list.files("../inst/extdata/zip", full.names = TRUE)
+
+for(i in 1:length(source_files)) {
+
+  unzip(zipfile = source_files[i],
+        exdir = "../inst/extdata/divvy",
+        overwrite = TRUE)
+  
+}
+```
+
+#### Cleanup Folder
+
+To cleanup the source directory, I remove extracted MacOS versions of the source files, which I don't need.
+
+```{r clean_divvy_directory}
+unlink("../inst/extdata/divvy/__MACOSX", recursive = TRUE)
+```
+
+## Discussion
+
+When downloading multiple files, you can use [this code](https://github.com/dtminnick/codebits/blob/main/R/file_reconciliation.md) to perform an automated reconciliation and combine the files into a single output file.
+
+

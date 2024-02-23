@@ -75,8 +75,8 @@ Here’s the first ten rows of the table.
 
 ``` r
 kable(head(calendar, 10),
-      col.names = c("Date", "Year", "Quarter", "Week",
-                    "Month", "Day of Month", "Year and Quarter", 
+      col.names = c("Date", "Year", "Quarter", "Month",
+                    "Week", "Day of Month", "Year and Quarter", 
                     "Year and Month", "Month Long", "Month Short", 
                     "Day", "Day Long", "Day Short"),
       caption = "Calendar Table",
@@ -86,18 +86,18 @@ kable(head(calendar, 10),
                 "r", "r", "r"))
 ```
 
-| Date       | Year | Quarter | Week | Month | Day of Month | Year and Quarter | Year and Month | Month Long | Month Short | Day |  Day Long | Day Short |
+| Date       | Year | Quarter | Month | Week | Day of Month | Year and Quarter | Year and Month | Month Long | Month Short | Day |  Day Long | Day Short |
 |:------|---:|----:|---:|---:|------:|--------:|-------:|------:|------:|--:|-----:|-----:|
-| 2022-01-01 | 2022 |       1 |    1 |     1 |            1 |          2022-01 |        2022-01 |    January |         Jan |   7 |  Saturday |       Sat |
-| 2022-01-02 | 2022 |       1 |    1 |     1 |            2 |          2022-01 |        2022-01 |    January |         Jan |   1 |    Sunday |       Sun |
-| 2022-01-03 | 2022 |       1 |    1 |     1 |            3 |          2022-01 |        2022-01 |    January |         Jan |   2 |    Monday |       Mon |
-| 2022-01-04 | 2022 |       1 |    1 |     1 |            4 |          2022-01 |        2022-01 |    January |         Jan |   3 |   Tuesday |       Tue |
-| 2022-01-05 | 2022 |       1 |    1 |     1 |            5 |          2022-01 |        2022-01 |    January |         Jan |   4 | Wednesday |       Wed |
-| 2022-01-06 | 2022 |       1 |    1 |     1 |            6 |          2022-01 |        2022-01 |    January |         Jan |   5 |  Thursday |       Thu |
-| 2022-01-07 | 2022 |       1 |    1 |     1 |            7 |          2022-01 |        2022-01 |    January |         Jan |   6 |    Friday |       Fri |
-| 2022-01-08 | 2022 |       1 |    1 |     2 |            8 |          2022-01 |        2022-01 |    January |         Jan |   7 |  Saturday |       Sat |
-| 2022-01-09 | 2022 |       1 |    1 |     2 |            9 |          2022-01 |        2022-01 |    January |         Jan |   1 |    Sunday |       Sun |
-| 2022-01-10 | 2022 |       1 |    1 |     2 |           10 |          2022-01 |        2022-01 |    January |         Jan |   2 |    Monday |       Mon |
+| 2022-01-01 | 2022 |       1 |     1 |    1 |            1 |          2022-01 |        2022-01 |    January |         Jan |   7 |  Saturday |       Sat |
+| 2022-01-02 | 2022 |       1 |     1 |    1 |            2 |          2022-01 |        2022-01 |    January |         Jan |   1 |    Sunday |       Sun |
+| 2022-01-03 | 2022 |       1 |     1 |    1 |            3 |          2022-01 |        2022-01 |    January |         Jan |   2 |    Monday |       Mon |
+| 2022-01-04 | 2022 |       1 |     1 |    1 |            4 |          2022-01 |        2022-01 |    January |         Jan |   3 |   Tuesday |       Tue |
+| 2022-01-05 | 2022 |       1 |     1 |    1 |            5 |          2022-01 |        2022-01 |    January |         Jan |   4 | Wednesday |       Wed |
+| 2022-01-06 | 2022 |       1 |     1 |    1 |            6 |          2022-01 |        2022-01 |    January |         Jan |   5 |  Thursday |       Thu |
+| 2022-01-07 | 2022 |       1 |     1 |    1 |            7 |          2022-01 |        2022-01 |    January |         Jan |   6 |    Friday |       Fri |
+| 2022-01-08 | 2022 |       1 |     1 |    2 |            8 |          2022-01 |        2022-01 |    January |         Jan |   7 |  Saturday |       Sat |
+| 2022-01-09 | 2022 |       1 |     1 |    2 |            9 |          2022-01 |        2022-01 |    January |         Jan |   1 |    Sunday |       Sun |
+| 2022-01-10 | 2022 |       1 |     1 |    2 |           10 |          2022-01 |        2022-01 |    January |         Jan |   2 |    Monday |       Mon |
 
 Calendar Table
 

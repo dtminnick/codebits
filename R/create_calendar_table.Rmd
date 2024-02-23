@@ -81,8 +81,8 @@ Here's the first ten rows of the table.
 
 ```{r view_table, message = FALSE}
 kable(head(calendar, 10),
-      col.names = c("Date", "Year", "Quarter", "Week",
-                    "Month", "Day of Month", "Year and Quarter", 
+      col.names = c("Date", "Year", "Quarter", "Month",
+                    "Week", "Day of Month", "Year and Quarter", 
                     "Year and Month", "Month Long", "Month Short", 
                     "Day", "Day Long", "Day Short"),
       caption = "Calendar Table",

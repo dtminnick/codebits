@@ -8,7 +8,7 @@ This repository contains useful codebits, organized by language, to solve data a
 
 [Create a Likert diverging stacked bar chart](https://github.com/dtminnick/codebits/blob/main/R/likert_diverging_stacked_chart.md) using the `ggstats` library.
 
-[Generate a calendar table](/portfolio/code/R/sample_page) using the `dplyr` library.
+[Generate a calendar table](https://github.com/dtminnick/codebits/blob/main/R/create_calendar_table.md) using the `dplyr` library.
 
 [Generate a frequency distribution table](https://github.com/dtminnick/codebits/blob/main/R/frequency_distribution_table.md) using the `dplyr` library.
 

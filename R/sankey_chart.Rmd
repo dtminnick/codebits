@@ -1,0 +1,118 @@
+---
+title: "Sankey Chart"
+author: "Donnie Minnick"
+date: "`r Sys.Date()`"
+output:
+  md_document:
+    variant: markdown_github
+---
+
+## Problem
+
+You need to visualize the flow of resources or information within a system.
+
+## Solution
+
+A sankey chart is a type of flow diagram that visualizes the flow of information within a system through a series of interconnected pathways. 
+
+The width of the arrows or lines in a sankey chart is proportional to the quantity of the flow, allowing for a clear representation of the relative magnitudes of different components.
+
+These charts are particularly useful for presenting complex systems with multiple inputs, outputs, and interconnections in a visually intuitive and easily understandable manner.
+
+#### Load Libraries
+
+This solution uses the `dplyr`,`knitr` and `networkD3` libraries.  The code chunk below checks for installation and, if needed, will install the libraries and load them.
+
+```{r load_libraries, message = FALSE}
+packages <- c("dplyr", "knitr", "networkD3")
+
+installed_packages <- packages %in% rownames(installed.packages())
+
+if(any(installed_packages == FALSE)) {
+  
+  install.packages(packages[!installed_packages])
+  
+}
+
+invisible(lapply(packages, library, character.only = TRUE))
+```
+
+#### Create Sample Data
+
+```{r create_nodes, message= FALSE}
+nodes <- read.csv("../inst/extdata/sankey/nodes.txt",
+                   header = TRUE,
+                   sep = ",",
+                   na.strings = c(""),
+                   stringsAsFactors = FALSE)
+
+kable(nodes,
+      col.names = c("Id", "Name"),
+      caption = "Nodes",
+      format.args = list(big.mark = ","),
+      align = c("l", "l"))
+```
+
+
+
+```{r create_sample, message = FALSE}
+sample <- read.csv("../inst/extdata/sankey/sample.txt",
+                   header = TRUE,
+                   sep = ",",
+                   na.strings = c(""),
+                   stringsAsFactors = FALSE)
+
+kable(head(sample, 10),
+      col.names = c("Position", "Starting Status", "Ending Status"),
+      caption = "Job Search Process Flow",
+      format.args = list(big.mark = ","),
+      align = c("l", "l", "l"))
+```
+
+
+
+```{r}
+sample <- sample %>%
+  group_by(starting_status,
+           ending_status) %>%
+  summarise(count = n())
+
+kable(sample,
+      col.names = c("Starting Status", "Ending Status", "Count"),
+      caption = "Job Search Process Flow",
+      format.args = list(big.mark = ","),
+      align = c("l", "l", "r"))
+```
+
+
+
+```{r}
+sample$source_id <- match(sample$starting_status, nodes$node_title) - 1
+```
+
+
+
+```{r}
+sample$target_id <- match(sample$ending_status, nodes$node_title) - 1
+```
+
+Generate the sankey chart using the summarized sample data.
+
+```{r}
+p <- sankeyNetwork(Links = sample,
+                   Nodes = nodes,
+                   Source = "source_id",
+                   Target = "target_id",
+                   Value = "count",
+                   NodeID = "node_title",
+                   sinksRight = FALSE,
+                   iterations = 0,
+                   fontFamily = "Calibri",
+                   fontSize = 11); p
+```
+
+
+
+## Discussion
+
+

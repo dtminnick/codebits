@@ -1,0 +1,12 @@
+node_id,node_title
+1,Application Submitted
+2,Application Acknowledged
+3,Application Contacted
+4,Interview Scheduled
+5,Interview Awaiting Feedback
+6,Interview Offered
+7,Interview Declined
+8,Offer Accepted
+9,Offer Declined
+10,Rejected
+11,No Response

@@ -1,0 +1,87 @@
+position_title,starting_status,ending_status
+Position 1,Application Submitted,No Response
+Position 2,Application Submitted,No Response
+Position 3,Application Submitted,No Response
+Position 1,Application Submitted,Application Acknowledged
+Position 1,Application Acknowledged,No Response
+Position 2,Application Submitted,Application Acknowledged
+Position 2,Application Acknowledged,No Response
+Position 3,Application Submitted,Application Acknowledged
+Position 3,Application Acknowledged,No Response
+Position 4,Application Submitted,Application Acknowledged
+Position 4,Application Acknowledged,No Response
+Position 4,Application Submitted,Application Acknowledged
+Position 4,Application Acknowledged,No Response
+Position 4,Application Submitted,Application Acknowledged
+Position 4,Application Acknowledged,No Response
+Position 4,Application Submitted,Application Acknowledged
+Position 4,Application Acknowledged,No Response
+Position 4,Application Submitted,Application Acknowledged
+Position 4,Application Acknowledged,No Response
+Position 2,Application Submitted,Application Acknowledged
+Position 2,Application Acknowledged,Rejected
+Position 3,Application Submitted,Application Acknowledged
+Position 3,Application Acknowledged,Rejected
+Position 2,Application Submitted,Application Acknowledged
+Position 2,Application Acknowledged,Rejected
+Position 3,Application Submitted,Application Acknowledged
+Position 3,Application Acknowledged,Rejected
+Position 2,Application Submitted,Application Acknowledged
+Position 2,Application Acknowledged,Rejected
+Position 3,Application Submitted,Application Acknowledged
+Position 3,Application Acknowledged,Rejected
+Position 4,Application Submitted,Application Acknowledged
+Position 4,Application Acknowledged,Application Contacted
+Position 4,Application Contacted,Interview Scheduled
+Position 4,Interview Scheduled,Interview Awaiting Feedback
+Position 4,Interview Awaiting Feedback,No Response
+Position 4,Application Submitted,Application Acknowledged
+Position 4,Application Acknowledged,Application Contacted
+Position 4,Application Contacted,Interview Scheduled
+Position 4,Interview Scheduled,Interview Awaiting Feedback
+Position 4,Interview Awaiting Feedback,No Response
+Position 4,Application Submitted,Application Acknowledged
+Position 4,Application Acknowledged,Application Contacted
+Position 4,Application Contacted,Interview Scheduled
+Position 4,Interview Scheduled,Interview Awaiting Feedback
+Position 4,Interview Awaiting Feedback,No Response
+Position 4,Application Submitted,Application Acknowledged
+Position 4,Application Acknowledged,Application Contacted
+Position 4,Application Contacted,Interview Scheduled
+Position 4,Interview Scheduled,Interview Awaiting Feedback
+Position 4,Interview Awaiting Feedback,Rejected
+Position 5,Application Submitted,Application Acknowledged
+Position 5,Application Acknowledged,Application Contacted
+Position 5,Application Contacted,Interview Scheduled
+Position 5,Interview Scheduled,Interview Awaiting Feedback
+Position 6,Application Submitted,Application Acknowledged
+Position 6,Application Acknowledged,Application Contacted
+Position 6,Application Contacted,Interview Scheduled
+Position 6,Interview Scheduled,Interview Awaiting Feedback
+Position 7,Application Submitted,Application Acknowledged
+Position 7,Application Acknowledged,Application Contacted
+Position 7,Application Contacted,Interview Scheduled
+Position 7,Interview Scheduled,Interview Awaiting Feedback
+Position 7,Interview Awaiting Feedback,Rejected
+Position 8,Application Submitted,Application Acknowledged
+Position 8,Application Acknowledged,Application Contacted
+Position 8,Application Contacted,Interview Scheduled
+Position 8,Interview Scheduled,Interview Awaiting Feedback
+Position 8,Interview Awaiting Feedback,Interview Declined
+Position 9,Application Submitted,Application Acknowledged
+Position 9,Application Acknowledged,Application Contacted
+Position 9,Application Contacted,Interview Scheduled
+Position 9,Interview Scheduled,Interview Awaiting Feedback
+Position 9,Interview Awaiting Feedback,Interview Offered
+Position 10,Application Submitted,Application Acknowledged
+Position 10,Application Acknowledged,Application Contacted
+Position 10,Application Contacted,Interview Scheduled
+Position 10,Interview Scheduled,Interview Awaiting Feedback
+Position 10,Interview Awaiting Feedback,Interview Offered
+Position 10,Interview Offered,Offer Accepted
+Position 10,Application Submitted,Application Acknowledged
+Position 10,Application Acknowledged,Application Contacted
+Position 10,Application Contacted,Interview Scheduled
+Position 10,Interview Scheduled,Interview Awaiting Feedback
+Position 10,Interview Awaiting Feedback,Interview Offered
+Position 10,Interview Offered,Offer Declined

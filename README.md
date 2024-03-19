@@ -8,6 +8,8 @@ This repository contains useful codebits, organized by language, to solve data a
 
 [Create a Likert diverging stacked bar chart](https://github.com/dtminnick/codebits/blob/main/R/likert_diverging_stacked_chart.md) using the `ggstats` library.
 
+[Create a sankey chart](https://github.com/dtminnick/codebits/blob/main/R/sankey_chart.md) to visualize a process flow.
+
 [Generate a calendar table](https://github.com/dtminnick/codebits/blob/main/R/create_calendar_table.md) using the `dplyr` library.
 
 [Generate a frequency distribution table](https://github.com/dtminnick/codebits/blob/main/R/frequency_distribution_table.md) using the `dplyr` library.

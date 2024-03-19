@@ -38,6 +38,12 @@ invisible(lapply(packages, library, character.only = TRUE))
 
 #### Create Sample Data
 
+This example imports sample data intended to represent the flow of
+applications through an interview process.
+
+Each node in the dataset is a step (or stage) in that process.
+Collectively, the nodes represent the end-to-end process.
+
 ``` r
 nodes <- read.csv("../inst/extdata/sankey/nodes.txt",
                    header = TRUE,
@@ -68,6 +74,10 @@ kable(nodes,
 
 Nodes
 
+In addition, the sample data captures the flow for a specific applicant.
+Using this sample data, we can visualize the flow for applications to
+ten different positions.
+
 ``` r
 sample <- read.csv("../inst/extdata/sankey/sample.txt",
                    header = TRUE,
@@ -96,6 +106,10 @@ kable(head(sample, 10),
 | Position 4 | Application Submitted    | Application Acknowledged |
 
 Job Search Process Flow
+
+To populate the sankey chart, we need to create a grouped data frame,
+showing the count of events, if you will, for each unique combination of
+starting and ending steps in the process.
 
 ``` r
 sample <- sample %>%
@@ -133,6 +147,9 @@ kable(sample,
 
 Job Search Process Flow
 
+We then add source and target ids to the data frame. These will be used
+in creation of the chart.
+
 ``` r
 sample$source_id <- match(sample$starting_status, nodes$node_title) - 1
 ```
@@ -161,3 +178,13 @@ p <- sankeyNetwork(Links = sample,
 ![](sankey_chart_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
 ## Discussion
+
+There are several observations we can make from this visual. First,
+there are a high number of applications for which no response is
+received, or are rejected without an opportunity for interview. And
+second, even when an interview is offered, there is still a high number
+of rejections.
+
+To address the first opportunity, it might make sense to evaluate how
+well matched a resume is to the position as documented. To address the
+second, more interview preparation might be warranted.

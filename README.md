@@ -1,8 +1,15 @@
-## codebits
+# Code Bits Collection
+This repo is a personal collection of small code snippets, functions, and scripts—used for testing concepts, prototyping ideas, or solving one-off problems during data, analysis, and automation projects. It includes code in R and Python and supports my broader work in process improvement and data science.
 
-This repository contains useful codebits, organized by language, to solve data analysis problems.
+# What's Inside
+Each file represents a "code bit"—a small, focused piece of logic meant to:
+- Explore functionality (e.g., reading unusual file formats, basic automation),
+- Prototype tools (e.g., workbook formatting, ETL steps), or
+- Act as utilities in larger projects.
 
-### R
+Files are accompanied by markdown files that show the code applied to a use case.
+
+# R Bits
 
 [Count active events](https://github.com/dtminnick/codebits/blob/main/R/count_by_hour_interval.md) by hour interval.
 

@@ -1,5 +1,5 @@
 # Code Bits Collection
-This repo is a personal collection of small code snippets, functions, and scripts—used for testing concepts, prototyping ideas, or solving one-off problems during data, analysis, and automation projects. It includes code in R and Python and supports my broader work in process improvement and data science.
+This repo is a personal collection of small code snippets, functions, and scripts used for testing concepts, prototyping ideas, or solving one-off problems during data, analysis, and automation projects. It includes code in R and Python and supports my broader work in process improvement and data science.
 
 # What's Inside
 Each file represents a "code bit"—a small, focused piece of logic meant to:

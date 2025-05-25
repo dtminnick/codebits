@@ -68,7 +68,7 @@ Finally, we generate the combined visual.
 
 ``` r
 ggplot(metric_df, aes(x = date, y = value)) +
-  geom_line(color = "steelblue", size = 1) +
+  geom_line(color = "steelblue", linewidth = 1) +
   geom_point(data = event_df, aes(x = date, y = value), color = "darkred", size = 3) +
   geom_segment(data = event_df,
                aes(x = date, xend = date, y = value, yend = label_y),
@@ -80,12 +80,6 @@ ggplot(metric_df, aes(x = date, y = value)) +
        x = "Date", y = "Metric Value") +
   theme_minimal()
 ```
-
-    ## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-    ## ℹ Please use `linewidth` instead.
-    ## This warning is displayed once every 8 hours.
-    ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-    ## generated.
 
 ![](combined_line_event_chart_files/figure-markdown_github/unnamed-chunk-3-1.png)
 

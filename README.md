@@ -10,6 +10,7 @@ Each file represents a "code bit," a small, focused piece of logic meant to:
 Files are accompanied by markdown files that show the code applied to a use case.
 
 # R Bits
+[Combined line event chart](https://github.com/dtminnick/codebits/blob/main/R/combined_line_event_chart.md) to show a metric and related events in a single chart.
 
 [Count active events](https://github.com/dtminnick/codebits/blob/main/R/count_by_hour_interval.md) by hour interval.
 
